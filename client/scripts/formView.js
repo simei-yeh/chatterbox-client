@@ -1,15 +1,19 @@
 var FormView = {
 
   $form: $('form'),
-
+  /**
+   * Calls handleSubmit() when submit is clicked
+   */
   initialize: function() {
     FormView.$form.on('submit', FormView.handleSubmit);
   },
-
+  /**
+   * Executed when submit is clicked
+   */
   handleSubmit: function(event) {
     // Stop the browser from submitting the form
     event.preventDefault();
-    
+
     console.log('click!');
   },
 
