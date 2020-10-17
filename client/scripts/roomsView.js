@@ -10,7 +10,7 @@ var RoomsView = {
   initialize: function() {
     // add event listeners for adding rooms through "add" button and "select" dropdown
     this.$button.on("click", function() {
-      Rooms.add;
+      Rooms.add();
     });
 
     this.$select.on("change", (event) => {

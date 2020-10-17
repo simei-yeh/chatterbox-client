@@ -24,12 +24,15 @@ var MessagesView = {
    * Used to issue the GET call inside of parse.js and call checkRooms to parse the data
    */
   initialize: function(roomname = null) {
-    // //takes in a roomname. If no roomname then default val = null
-    // //loop through all data and render each message
+    // takes in a roomname. If no roomname then default val = null
+    // loop through all data and render each message
     var callback = function(input) {
       this.checkRooms(input, roomname);
     };
     Parse.readAll(callback.bind(this));
+
+    //event listener to add a friend
+    $('.username').on('click', Friends.toggleStatus);
   },
 
 

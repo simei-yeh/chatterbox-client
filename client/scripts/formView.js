@@ -12,10 +12,12 @@ var FormView = {
    * Executed when submit is clicked
    */
   handleSubmit: function(event) {
-    // Stop the browser from submitting the form
+    //Stop the browser from submitting the form
     event.preventDefault();
-
-    console.log('click!');
+    //Grab message from text box
+    var submission = $("#message").serializeArray();
+    //Calls convertMessage() in messages.js to convert the message
+    Messages.convertMessage(submission[0].value);
   },
 
   setStatus: function(active) {
