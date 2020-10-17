@@ -8,6 +8,5 @@ var Friends = {
     //if the person is already a friend then untoggle them
     //sends a list back to messagesView to highlight user
   }
-
 };
 

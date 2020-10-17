@@ -13,9 +13,9 @@ var Messages = {
     message.username = App.username;
     message.text = submission;
     //update roomname for late; need to update rooms to take in a room
-    message.roomname = '';
+    message.roomname = Rooms.currentRoomname;
 
-    Parse.create(message, function() {console.log("click!");});
+    Parse.create(message, function() {console.log("Message submitted!");});
   }
 
 

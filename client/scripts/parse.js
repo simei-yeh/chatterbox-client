@@ -30,12 +30,18 @@ var Parse = {
   },
   /**
    * Get messages from PARSE
+   * /movies/search?year=2010&actor=Carrey
    */
   readAll: function(successCB, errorCB = null) {
     $.ajax({
       url: Parse.server,
       type: 'GET',
-      data: { order: '-createdAt' },
+      data: search = {order: '-createdAt'},
+      // data: where = {roomname: {
+      //   '$exists' : true
+      //     }
+      //   },
+      // data: {limit: '200',skip: '400'},
       contentType: 'application/json',
       success: successCB,
       error: errorCB || function(error) {
