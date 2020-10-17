@@ -3,6 +3,7 @@ var FormView = {
   $form: $('form'),
   /**
    * Calls handleSubmit() when submit is clicked
+   * initalize creates a 'submit' event listener on the form
    */
   initialize: function() {
     FormView.$form.on('submit', FormView.handleSubmit);

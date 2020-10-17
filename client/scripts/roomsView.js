@@ -8,7 +8,15 @@ var RoomsView = {
    * ?
    */
   initialize: function() {
-    //Probably grab rooms from server and add to our HTML
+    // add event listeners for adding rooms through "add" button and "select" dropdown
+    this.$button.on("click", function() {
+      Rooms.add;
+    });
+
+    this.$select.on("change", (event) => {
+      //event = name of the room
+      MessagesView.initialize(event.target.value);
+    });
   },
   /**
    * Add messages to the DOM
