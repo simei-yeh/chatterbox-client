@@ -15,7 +15,7 @@ var MessagesView = {
     // condition after selecting a room
     // if a room has been selected then add it as the first room so messages can be viewed
     //exclude from the for loop below so it does not get added twice
-    console.log(roomname);
+
     if (roomname !== null) {
       //debugger;
       addedRooms[roomname] = true;
@@ -39,6 +39,8 @@ var MessagesView = {
         MessagesView.renderMessage(message);
       }
     }
+
+    MessagesView.friendUsername();
   },
   /*
    * Used to issue the GET call inside of parse.js and call checkRooms to parse the data
@@ -51,9 +53,6 @@ var MessagesView = {
       this.checkRooms(input, roomname);
     };
     Parse.readAll(callback.bind(this));
-
-    //event listener to add a friend
-    $('.username').on('click', Friends.toggleStatus);
   },
 
 
@@ -70,5 +69,16 @@ var MessagesView = {
 
   clearMessageBox: function() {
     this.$chats.empty();
+  },
+
+  /*
+  * //event listener to add a friend
+  */
+
+  friendUsername: function() {
+    console.log("making friends");
+    $('.username').on('click', (event) => (
+      Friends.toggleStatus(event.target.innerText)));
   }
+
 };
