@@ -38,9 +38,10 @@ var MessagesView = {
       } else if (message['roomname'] === roomname) {
         MessagesView.renderMessage(message);
       }
+
     }
 
-    MessagesView.friendUsername();
+    MessagesView.friendUsername(roomname);
   },
   /*
    * Used to issue the GET call inside of parse.js and call checkRooms to parse the data
@@ -58,11 +59,19 @@ var MessagesView = {
 
   /**
    * Add message to the DOM
+   * Insert the message into the HTML template
    */
   renderMessage: function(message) {
-    //Insert the message into the HTML template
+
     //debugger;
-    var html = MessageView.renderHelper(message);
+    // check if username is friend
+    //if friend then send to renderHelper with true
+    //else send to renderHelper with false
+    if (Friends.friendsList[message['username']] !== undefined) {
+      var html = MessageView.renderHelper(message, true);
+    } else {
+      var html = MessageView.renderHelper(message, false);
+    }
     //Append the message to the chat
     this.$chats.append(html);
   },
@@ -72,13 +81,16 @@ var MessagesView = {
   },
 
   /*
-  * //event listener to add a friend
+  * //adds event listener to add a friend
+  * when event listener is trigger (click on friendname),
+  * friend is added/removed to friendsList
+  * rerun MessagesView to rerender friend's highlighted styling
   */
-
-  friendUsername: function() {
-    console.log("making friends");
-    $('.username').on('click', (event) => (
-      Friends.toggleStatus(event.target.innerText)));
+  friendUsername: function(roomname) {
+    $('.username').on('click', (event) => {
+      Friends.toggleStatus(event.target.innerText);
+      MessagesView.initialize(roomname);
+    });
   }
 
 };

@@ -7,7 +7,7 @@ var MessageView = {
   //takes in a message and checks username, roomname, text
   //insert placeholder for any undefined information
   //Calls the render with the new placeholder properties
-  renderHelper: function(message) {
+  renderHelper: function(message, friendBool) {
     if (!message["username"]) {
       message["username"] = "anonymous";
     }
@@ -19,7 +19,13 @@ var MessageView = {
     if (!message["roomname"]) {
       message["roomname"] = "";
     }
-    return this.render(message);
+
+    if (friendBool) {
+      return this.renderFriend(message);
+    } else {
+      return this.render(message);
+    }
+
   },
   /**
    * Create single message?
@@ -31,11 +37,17 @@ var MessageView = {
         <div class="username"><%-username%></div>
         <div><%-text%></div>
       </div>
-    `)
+    `),
   //   render: _.template(`
   //   <div class="chat <%=roomname%>">
   //     <div class="username"><%-username%></div>
   //     <div><%=text%></div>
   //   </div>
   // `)
+  renderFriend: _.template(`
+  <div class="chat <%-roomname%>">
+    <div class="username friend"><%-username%></div>
+    <div><%-text%></div>
+  </div>
+  `)
 };

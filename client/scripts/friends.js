@@ -17,6 +17,7 @@ var Friends = {
     } else {
       delete Friends.friendsList[name];
     }
+
   }
 };
 
